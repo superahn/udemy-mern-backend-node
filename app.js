@@ -46,7 +46,7 @@ app.use((error, req, res, next) => {
 // mongoose connect
 mongoose
   .connect(
-    "mongodb+srv://sung:YaJSiLCz3XILlIeN@cluster0.lhjw6fd.mongodb.net/mern?retryWrites=true&w=majority"
+    "mongodb+srv://sung:<password>@cluster0.lhjw6fd.mongodb.net/mern?retryWrites=true&w=majority"
   )
   .then(() => {
     app.listen(5500); // if connecting to mongoose is successful, then start to listen server (node + express)
