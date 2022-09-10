@@ -1,5 +1,4 @@
 const HttpError = require("../models/http-error");
-const { v4: uuidv4 } = require("uuid");
 const { validationResult } = require("express-validator");
 const User = require("../models/user");
 
@@ -26,7 +25,7 @@ const signup = async (req, res, next) => {
     );
   }
 
-  const { name, email, password, places } = req.body;
+  const { name, email, password } = req.body;
 
   // check if there is a same email already.
   let existingUser;
@@ -54,7 +53,7 @@ const signup = async (req, res, next) => {
     email,
     password,
     image: "https://live.staticflickr.com/7631/26849088292_36fc52ee90_b.jpg",
-    places,
+    places: [],
   });
 
   try {
