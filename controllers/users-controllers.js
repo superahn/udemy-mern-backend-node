@@ -57,10 +57,8 @@ const signup = async (req, res, next) => {
   });
 
   try {
-    console.log(createdUser);
     await createdUser.save(); // write data to mongodb
   } catch (err) {
-    console.log(err);
     // handle error, otherwise this server can be crashed...
     const error = new HttpError("Creating user failed, please try again.", 500);
     return next(error); // pass the error into an Express error handler with the next argument.
