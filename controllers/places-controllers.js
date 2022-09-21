@@ -2,6 +2,7 @@ const HttpError = require("../models/http-error");
 const { validationResult } = require("express-validator");
 const mongoose = require("mongoose");
 
+const getCoordsForAddress = require("../util/location");
 const Place = require("../models/place");
 const User = require("../models/user");
 const { setEngine } = require("crypto");
@@ -65,7 +66,21 @@ const createPlace = async (req, res, next) => {
   }
 
   // const title = req.body.title
-  const { title, description, coordinates, address, creator } = req.body;
+  const { title, description, address, creator } = req.body;
+
+  let coordinates = {
+    lat: 40.7484474,
+    lng: -73.9871516,
+  };
+  /*
+  try {
+    coordinates = await getCoordsForAddress(address);
+    console.log(coordinates);
+  } catch (error) {
+    return next(error);
+  }
+  */
+
   const createdPlace = new Place({
     // now don't nee id because mongodb will create it
     title,
